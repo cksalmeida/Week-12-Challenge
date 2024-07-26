@@ -7,7 +7,7 @@ import LinkedIn from "../assets/LinkedInLogo.svg"
 function Footer() {
     
   return (
-    <footer className="p-8 border-t border-gray-300 mt-8">
+    <footer className="p-8 border-t border-gray-300">
       <div className="container mx-auto">
         <div className="flex gap-48">
           <div>

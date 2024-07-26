@@ -8,7 +8,7 @@ function ShareHome() {
             <p className="font-semibold text-xl text-[#616161] mt-14">Share your setup with</p>
             <h2 className="font-bold text-4xl text-[#3A3A3A] mt-2">#FuniroFurniture</h2>
         </div>
-     <img src={ShareImg} className="w-full"/>
+     <img src={ShareImg} className="w-full mb-8"/>
     </div>
   )
 }
