@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Product } from '../types/Product'
+import RelatedProducts from '../components/RelatedProducts'
 
 const ProductDetail: React.FC = () => {
   const { productId } = useParams<{ productId: string }>()
   const [product, setProduct] = useState<Product | null>(null)
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
@@ -17,6 +19,14 @@ const ProductDetail: React.FC = () => {
       .catch(error => {
         console.error('There was an error fetching the data!', error)
         setLoading(false)
+      })
+
+    axios.get('http://localhost:3000/products?_limit=4')
+      .then(response => {
+        setRelatedProducts(response.data)
+      })
+      .catch(error => {
+        console.error('There was an error fetching the related products!', error)
       });
   }, [productId])
 
@@ -41,7 +51,7 @@ const ProductDetail: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="w-full md:w-1/2 pl-14">
           <h1 className="text-2xl font-bold mb-4">{product.title}</h1>
           <div className="text-xl font-semibold text-[#9F9F9F] mb-2">Rp {product.salePrice.toLocaleString('id-ID')}</div>
@@ -77,10 +87,10 @@ const ProductDetail: React.FC = () => {
           </div>
 
           <div className="flex items-center pb-8 border-b mb-4">
-            <div className='border rounded-md mr-4'>
-            <button className="p-2 font-bold">-</button>
-            <span className="px-1 font-bold">1</span>
-            <button className="p-2 font-bold">+</button>
+            <div className="border rounded-md mr-4">
+              <button className="p-2 font-bold">-</button>
+              <span className="px-1 font-bold">1</span>
+              <button className="p-2 font-bold">+</button>
             </div>
             <button className="border px-4 py-2 font-semibold border-black rounded-md">Add To Cart</button>
           </div>
@@ -88,26 +98,27 @@ const ProductDetail: React.FC = () => {
           <div className="mt-8 text-[#9F9F9F]">
             <div className="grid gap-5 text-sm">
               <div>
-                SKU  : {product.sku}
+                SKU: {product.sku}
               </div>
               <div>
-                Category : {product.category}
+                Category: {product.category}
               </div>
               <div>
-                Tags : {product.tags.join(', ')}
+                Tags: {product.tags.join(', ')}
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div className="mt-5 p-8 border-t">
-            <h3 className="font-bold text-center text-xl mb-2">Description</h3>
-            <div className="max-w-6xl mx-auto">
-            <p className="text-[#9F9F9F]">{product.description.long}</p>
-            </div>
+        <h3 className="font-bold text-center text-xl mb-2">Description</h3>
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[#9F9F9F]">{product.description.long}</p>
+        </div>
       </div>
+      <RelatedProducts relatedProducts={relatedProducts} />
     </div>
-    
   )
 }
 
