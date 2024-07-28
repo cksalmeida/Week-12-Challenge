@@ -6,6 +6,7 @@ import BrowseHome from "../components/BrowseHome"
 import CardImg1 from "../assets/CardImgHome1.svg"
 import CardImg2 from "../assets/CardImgHome2.svg"
 import CardImg3 from "../assets/CardImgHome3.svg"
+import ProductList from "../components/ProductList"
 
 const Home = () => {
   return(
@@ -20,6 +21,10 @@ const Home = () => {
       <BrowseHome CardImg={CardImg1} Title={<h1>Dining</h1>} />
       <BrowseHome CardImg={CardImg2} Title={<h1>Living</h1>} />
       <BrowseHome CardImg={CardImg3} Title={<h1>Bedroom</h1>} />
+      </div>
+      <div className="w-4/5 m-auto">
+      <h2 className="font-bold text-center text-2xl mb-2 mt-12">Our Products</h2>
+      <ProductList />
       </div>
       <ShareHome />
       <Footer />

@@ -6,6 +6,7 @@ import Home from './routes/Home.tsx'
 import Shop from './routes/Shop.tsx'
 import About from './routes/About.tsx'
 import Contact from './routes/Contact.tsx'
+import SingleProduct from './routes/SingleProduct.tsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/Contact",
     element: <Contact />
+  },
+  {
+    path: "/product/:productId",
+    element: <SingleProduct />,
   }
 ])
 
