@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
           </span>
         )}
         {product.new && (
-          <span className="absolute top-4 left-4 bg-green-500 text-white px-2 py-1 text-sm">
+          <span className="absolute top-4 left-4 bg-[#2EC1AC] text-white px-2 py-1 text-sm">
             New
           </span>
         )}
