@@ -1,5 +1,6 @@
 // ShoppingCartModal.tsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface ShoppingCartModalProps {
   items: Array<{ title: string, price: number, quantity: number, image: string }>;
@@ -8,7 +9,16 @@ interface ShoppingCartModalProps {
 }
 
 const ShoppingCartModal: React.FC<ShoppingCartModalProps> = ({ items, onClose, onRemoveItem }) => {
+  const navigate = useNavigate();
   const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  const handleCheckout = () => {
+    if (items.length > 0) {
+      navigate('/Cart'); // Navega para a página de checkout
+    } else {
+      alert('Seu carrinho está vazio.');
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-end items-start z-50">
@@ -32,8 +42,8 @@ const ShoppingCartModal: React.FC<ShoppingCartModalProps> = ({ items, onClose, o
         <div className="mt-auto border-t pt-4">
           <p className="font-semibold">Subtotal <span className="ml-14 text-[#B88E2F]">Rp {subtotal.toLocaleString('id-ID')}</span></p>
           <div className="mt-4 flex flex-row gap-2">
-            <button className="border border-black px-5 py-2 rounded-full">Cart</button>
-            <button className="border border-black px-5 py-2 rounded-full">Checkout</button>
+            <button className="border border-black px-5 py-2 rounded-full" onClick={() => navigate('/Cart')}>Cart</button>
+            <button onClick={handleCheckout} className="border border-black px-5 py-2 rounded-full">Checkout</button>
             <button className="border border-black px-5 py-2 rounded-full">Comparison</button>
           </div>
         </div>

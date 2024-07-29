@@ -7,6 +7,7 @@ import Shop from './routes/Shop'
 import About from './routes/About'
 import Contact from './routes/Contact'
 import SingleProduct from './routes/SingleProduct'
+import Cart from './routes/Cart'
 import { CartProvider } from './components/CartContext'
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/product/:productId",
     element: <SingleProduct />,
+  },
+  {
+    path: "/Cart",
+    element: <Cart />,
   }
 ]);
 
