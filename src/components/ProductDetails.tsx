@@ -1,46 +1,60 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import { Product } from '../types/Product'
-import RelatedProducts from '../components/RelatedProducts'
-import Breadcrumbs from '../components/BreadCrumbs'
+// ProductDetails.tsx
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Product } from '../types/Product';
+import RelatedProducts from '../components/RelatedProducts';
+import Breadcrumbs from '../components/BreadCrumbs';
+import { useCart } from '../components/CartContext';
 
-const ProductDetail: React.FC = () => {
-  const { productId } = useParams<{ productId: string }>()
-  const [product, setProduct] = useState<Product | null>(null)
-  const [relatedProducts, setRelatedProducts] = useState<Product[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
+const ProductDetails: React.FC = () => {
+  const { productId } = useParams<{ productId: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [quantity, setQuantity] = useState<number>(1); // Estado local para a quantidade
+  const { addItemToCart, openCart } = useCart();
 
   useEffect(() => {
     axios.get(`http://localhost:3000/products/${productId}`)
       .then(response => {
-        setProduct(response.data)
-        setLoading(false)
+        setProduct(response.data);
+        setLoading(false);
       })
       .catch(error => {
-        console.error('There was an error fetching the data!', error)
-        setLoading(false)
-      })
+        console.error('There was an error fetching the data!', error);
+        setLoading(false);
+      });
 
     axios.get('http://localhost:3000/products?_limit=4')
       .then(response => {
-        setRelatedProducts(response.data)
+        setRelatedProducts(response.data);
       })
       .catch(error => {
-        console.error('There was an error fetching the related products!', error)
-      })
-  }, [productId])
+        console.error('There was an error fetching the related products!', error);
+      });
+  }, [productId]);
+
+  const handleAddToCart = () => {
+    if (product) {
+      addItemToCart({ title: product.title, price: product.salePrice, quantity, image: product.images.mainImage });
+      openCart();
+    }
+  };
+
+  const handleQuantityChange = (change: number) => {
+    setQuantity(prevQuantity => Math.max(1, prevQuantity + change)); // Garantir que a quantidade não seja menor que 1
+  };
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (!product) {
-    return <div>Product not found.</div>
+    return <div>Product not found.</div>;
   }
 
   return (
-
     <div>
       <Breadcrumbs productTitle={product.title} />
       <div className="max-w-5xl mx-auto flex-wrap">
@@ -91,12 +105,12 @@ const ProductDetail: React.FC = () => {
             </div>
 
             <div className="flex items-center pb-8 border-b mb-4">
-              <div className="border rounded-md mr-4">
-                <button className="p-2 font-bold">-</button>
-                <span className="px-1 font-bold">1</span>
-                <button className="p-2 font-bold">+</button>
+              <div className="border rounded-md mr-4 flex items-center">
+                <button onClick={() => handleQuantityChange(-1)} className="p-2 font-bold">-</button>
+                <span className="px-1 font-bold">{quantity}</span>
+                <button onClick={() => handleQuantityChange(1)} className="p-2 font-bold">+</button>
               </div>
-              <button className="border px-4 py-2 font-semibold border-black rounded-md">Add To Cart</button>
+              <button onClick={handleAddToCart} className="border px-4 py-2 font-semibold border-black rounded-md">Add To Cart</button>
             </div>
 
             <div className="mt-8 text-[#9F9F9F]">
@@ -124,7 +138,7 @@ const ProductDetail: React.FC = () => {
       </div>
       <RelatedProducts relatedProducts={relatedProducts} />
     </div>
-  )
-}
+  );
+};
 
-export default ProductDetail
+export default ProductDetails;

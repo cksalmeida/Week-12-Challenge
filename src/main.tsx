@@ -2,11 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './routes/Home.tsx'
-import Shop from './routes/Shop.tsx'
-import About from './routes/About.tsx'
-import Contact from './routes/Contact.tsx'
-import SingleProduct from './routes/SingleProduct.tsx'
+import Home from './routes/Home'
+import Shop from './routes/Shop'
+import About from './routes/About'
+import Contact from './routes/Contact'
+import SingleProduct from './routes/SingleProduct'
+import { CartProvider } from './components/CartContext'
 
 const router = createBrowserRouter([
   {
@@ -23,16 +24,18 @@ const router = createBrowserRouter([
   },
   {
     path: "/Contact",
-    element: <Contact />
+    element: <Contact />,
   },
   {
     path: "/product/:productId",
     element: <SingleProduct />,
   }
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
+  </React.StrictMode>
 )
