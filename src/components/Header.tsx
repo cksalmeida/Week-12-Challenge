@@ -1,13 +1,17 @@
-// Header.tsx
-import React from 'react';
-import FurniroLogo from "../assets/FurniroLogo.svg";
-import Cart from "../assets/CartIcon.svg";
-import { Link } from "react-router-dom";
-import ShoppingCartModal from "./ShoppingCartModal";
-import { useCart } from '../components/CartContext';
+import FurniroLogo from "../assets/FurniroLogo.svg"
+import Cart from "../assets/CartIcon.svg"
+import { Link, useNavigate } from "react-router-dom"
+import ShoppingCartModal from "./ShoppingCartModal"
+import { useCart } from '../components/CartContext'
 
 const Header: React.FC = () => {
-  const { isCartOpen, openCart, closeCart, cartItems, removeItemFromCart } = useCart();
+  const { isCartOpen, openCart, closeCart, cartItems, removeItemFromCart } = useCart()
+  const navigate = useNavigate()
+
+  const handleViewCart = () => {
+    closeCart();
+    navigate('/Cart')
+  }
 
   return (
     <>
@@ -31,10 +35,11 @@ const Header: React.FC = () => {
           items={cartItems}
           onClose={closeCart}
           onRemoveItem={removeItemFromCart}
+          onViewCart={handleViewCart}
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

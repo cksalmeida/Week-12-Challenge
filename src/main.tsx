@@ -8,39 +8,44 @@ import About from './routes/About'
 import Contact from './routes/Contact'
 import SingleProduct from './routes/SingleProduct'
 import Cart from './routes/Cart'
+import Checkout from './routes/Checkout'
 import { CartProvider } from './components/CartContext'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
   {
-    path: "/Shop",
+    path: '/Shop',
     element: <Shop />,
   },
   {
-    path: "/About",
+    path: '/About',
     element: <About />,
   },
   {
-    path: "/Contact",
+    path: '/Contact',
     element: <Contact />,
   },
   {
-    path: "/product/:productId",
+    path: '/product/:productId',
     element: <SingleProduct />,
   },
   {
-    path: "/Cart",
+    path: '/Cart',
     element: <Cart />,
-  }
-]);
+  },
+  {
+    path: '/Checkout',
+    element: <Checkout />,
+  },
+])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <CartProvider>
-      <RouterProvider router={router} />
-    </CartProvider>
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
   </React.StrictMode>
-)
+);

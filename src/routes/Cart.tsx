@@ -1,34 +1,34 @@
-import { useCart } from '../components/CartContext';
-import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
-import DefaultBanner from '../components/DefaultBanner';
-import HighQuality from '../components/HighQuality';
-import Footer from '../components/Footer';
+import { useCart } from '../components/CartContext'
+import { useNavigate } from 'react-router-dom'
+import Header from '../components/Header'
+import DefaultBanner from '../components/DefaultBanner'
+import HighQuality from '../components/HighQuality'
+import Footer from '../components/Footer'
 
 const Cart: React.FC = () => {
-  const { cartItems, removeItemFromCart, addItemToCart } = useCart();
-  const navigate = useNavigate();
+  const { cartItems, removeItemFromCart, addItemToCart } = useCart()
+  const navigate = useNavigate()
 
-  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
 
   const handleQuantityChange = (index: number, delta: number) => {
-    const item = cartItems[index];
-    const newQuantity = item.quantity + delta;
+    const item = cartItems[index]
+    const newQuantity = item.quantity + delta
 
     if (newQuantity > 0) {
-      const updatedItem = { ...item, quantity: newQuantity };
-      removeItemFromCart(index);
-      addItemToCart(updatedItem);
+      const updatedItem = { ...item, quantity: newQuantity }
+      removeItemFromCart(index)
+      addItemToCart(updatedItem)
     }
   };
 
   const handleCheckout = () => {
     if (cartItems.length > 0) {
-      navigate('/Checkout');
+      navigate('/Checkout')
     } else {
-      alert('Seu carrinho está vazio.');
+      alert('Seu carrinho está vazio.')
     }
-  };
+  }
 
   return (
     <>
@@ -97,7 +97,7 @@ const Cart: React.FC = () => {
       <HighQuality />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart
