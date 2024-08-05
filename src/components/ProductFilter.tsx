@@ -1,11 +1,11 @@
-import React from "react"
-import FilterIcon from "../assets/FilterIcon.svg"
+import React from "react";
+import FilterIcon from "../assets/FilterIcon.svg";
 
 interface ProductFilterProps {
-  limit: number
-  setLimit: (limit: number) => void
-  sortBy: string
-  setSortBy: (sortBy: string) => void
+  limit: number;
+  setLimit: (limit: number) => void;
+  sortBy: string;
+  setSortBy: (sortBy: string) => void;
 }
 
 const ProductFilter: React.FC<ProductFilterProps> = ({ limit, setLimit, sortBy, setSortBy }) => {
@@ -49,7 +49,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ limit, setLimit, sortBy, 
         </select>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductFilter
+export default ProductFilter;

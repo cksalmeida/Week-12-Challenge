@@ -7,6 +7,7 @@ import CardImg1 from "../assets/CardImgHome1.svg"
 import CardImg2 from "../assets/CardImgHome2.svg"
 import CardImg3 from "../assets/CardImgHome3.svg"
 import ProductList from "../components/ProductList"
+import ShowMoreButton from "../components/ShowMoreButton"
 
 const Home = () => {
   return (
@@ -24,8 +25,9 @@ const Home = () => {
       </div>
       <div className="w-4/5 m-auto">
         <h2 className="font-bold text-center text-2xl mb-2 mt-12">Our Products</h2>
-        <ProductList limit={8} />
+        <ProductList limit={8} sortBy="rating" pagination={false} />
       </div>
+      <ShowMoreButton />
       <ShareHome />
       <Footer />
     </>
