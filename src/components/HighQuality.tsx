@@ -1,8 +1,8 @@
-import HighQualityCard from './HighQualityCard';
 import Trophy from '../assets/Trophy.svg';
 import Guarantee from "../assets/Guarantee.svg"
 import Shipping from "../assets/Shipping.svg"
 import Support from "../assets/Support.svg"
+import HighQualityCard from './HighQualityCard';
 
 function HighQuality() {
   const cards = [
@@ -29,7 +29,7 @@ function HighQuality() {
   ];
 
   return (
-    <div className="bg-[#FAF3EA] h-52 flex justify-around items-center p-6">
+    <div className="bg-[#FAF3EA] p-6 flex flex-col md:flex-row justify-around items-center gap-4 md:gap-8">
       {cards.map((card, index) => (
         <HighQualityCard
           key={index}
@@ -39,7 +39,7 @@ function HighQuality() {
         />
       ))}
     </div>
-  )
+  );
 }
 
-export default HighQuality
+export default HighQuality;

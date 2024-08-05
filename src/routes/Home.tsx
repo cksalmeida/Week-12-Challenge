@@ -18,10 +18,10 @@ const Home = () => {
         <h3 className="font-bold text-3xl text-[#333333]">Browse The Range</h3>
         <p className="mt-2 text-[#666666]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
-      <div className="grid grid-flow-col text-center justify-center gap-5 mt-8">
-        <BrowseHome CardImg={CardImg1} Title={<h1>Dining</h1>} />
-        <BrowseHome CardImg={CardImg2} Title={<h1>Living</h1>} />
-        <BrowseHome CardImg={CardImg3} Title={<h1>Bedroom</h1>} />
+      <div className="grid grid-cols-1 px-4 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
+      <BrowseHome CardImg={CardImg1} Title="Dining" />
+      <BrowseHome CardImg={CardImg2} Title="Living" />
+      <BrowseHome CardImg={CardImg3} Title="Bedroom" />
       </div>
       <div className="w-4/5 m-auto">
         <h2 className="font-bold text-center text-2xl mb-2 mt-12">Our Products</h2>

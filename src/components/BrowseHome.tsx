@@ -1,11 +1,10 @@
-function BrowseHome({CardImg, Title}) {
-
+function BrowseHome({ CardImg, Title }) {
   return (
-    <div>
-     <img src={CardImg} className="rounded-lg mb-8"/>
-     <span className="font-bold text-xl text-[#333333]">{Title}</span>
+    <div className="flex flex-col items-center">
+      <img src={CardImg} className="rounded-lg mb-8 h-auto object-cover" alt={Title} />
+      <span className="font-bold text-xl text-[#333333]">{Title}</span>
     </div>
-  )
+  );
 }
 
-export default BrowseHome
+export default BrowseHome;

@@ -9,7 +9,7 @@ import Contact from './routes/Contact';
 import SingleProduct from './routes/SingleProduct';
 import Cart from './routes/Cart';
 import Checkout from './routes/Checkout';
-import Login from './routes/Login'; // Importando o componente de Login
+import Login from './routes/Login';
 import { CartProvider } from './components/CartContext';
 import { AuthProvider } from './components/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
