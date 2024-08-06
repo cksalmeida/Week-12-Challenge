@@ -41,9 +41,9 @@ const Cart: React.FC = () => {
         {cartItems.length === 0 ? (
           <p>Seu carrinho está vazio.</p>
         ) : (
-          <div className="grid grid-cols-3 gap-6">
-            <div className="col-span-2">
-              <table className="w-full table-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="col-span-1 md:col-span-2 overflow-x-auto">
+              <table className="w-full table-auto min-w-[600px]">
                 <thead>
                   <tr className="bg-[#F9F1E7]">
                     <th className="px-4 py-2 text-left">Product</th>
@@ -58,7 +58,7 @@ const Cart: React.FC = () => {
                     <tr key={index}>
                       <td className="px-2 py-3 flex items-center">
                         <img src={item.image} alt={item.title} className="w-16 h-16 rounded mr-4" />
-                        {item.title}
+                        <span className="truncate">{item.title}</span>
                       </td>
                       <td className="px-4 py-2">Rp {item.price.toLocaleString('id-ID')}</td>
                       <td className="px-4 py-2 text-center">
@@ -77,7 +77,7 @@ const Cart: React.FC = () => {
                 </tbody>
               </table>
             </div>
-            <div className="col-span-1 bg-[#F9F1E7] p-6 ">
+            <div className="col-span-1 bg-[#F9F1E7] p-6">
               <h2 className="text-xl text-center font-bold">Cart Totals</h2>
               <div className="mt-4 flex flex-col">
                 <p className="flex justify-between">
